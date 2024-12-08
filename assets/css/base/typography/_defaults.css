@@ -1,0 +1,48 @@
+@import "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined";
+
+:where(html) {
+  --font-sans: "Poppins", sans-serif;
+  --font-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono, Monaco, Droid Sans Mono, Source Code Pro, monospace;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  color: var(--heading-color);
+}
+
+:root {
+  /* Headings */
+  --heading-1-size: 4.875rem;
+  --heading-1-leading: 106%;
+  --heading-1-weight: 600;
+  --heading-1-margin-block: 1em;
+
+  --heading-2-size: 3.4375rem;
+  --heading-2-leading: 109%;
+  --heading-2-weight: 600;
+  --heading-2-margin-block: 1em;
+
+  --heading-3-size: 1.875rem;
+  --heading-3-leading: normal;
+  --heading-3-weight: 600;
+  --heading-3-margin-block: 1em;
+
+  --heading-4-size: 1.875rem;
+  --heading-4-leading: normal;
+  --heading-4-weight: 400;
+  --heading-4-margin-block: 1em;
+
+  --heading-5-size: 1.5rem;
+  --heading-5-leading: normal;
+  --heading-5-weight: 600;
+  --heading-5-margin-block: 1em;
+
+  --heading-color: #000000;
+
+  /* Body */
+  --paragraph-size: 1rem;
+  --paragraph-leading: normal;
+  --paragraph-weight: 400;
+  --paragraph-margin-block: 1em;
+
+  --body-color: #000000;
+}

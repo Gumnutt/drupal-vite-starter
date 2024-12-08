@@ -1,0 +1,41 @@
+:where(a) {
+  --link-color: var(--sky-blue-800);
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  line-height: inherit;
+  color: var(--link-color);
+  &:hover {
+    text-decoration: underline;
+    color: var(--link-color);
+  }
+  &:visited {
+    color: var(--link-color);
+  }
+  &:has(> svg) {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    & > svg {
+      width: 10px;
+    }
+  }
+}
+
+.content-body li > a,
+.paragraph li > a,
+.container p > a {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/*a[href]:not(:where(
+    [href^="#"],
+    [href^="/"]:not([href^="//"]),
+    [href*="//stackoverflow.com"],
+    [href*="//meta.stackoverflow.com"],
+  )):after {
+  content: "↗️";
+}*/

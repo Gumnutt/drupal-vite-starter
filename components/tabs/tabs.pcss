@@ -1,0 +1,44 @@
+@import "assets/_base.css";
+
+@layer theme {
+  .tabs {
+    --tab-count: 3;
+    --tabs-gutter: 3.75rem;
+
+    --tab-track-padding: 0px;
+    --tab-track-background-color: 0 0% 100% / 0;
+    --tab-track-gutter: 1rem;
+
+    --tab-button-padding-block: 3.75rem;
+    --tab-button-icon-size: 3rem;
+    --tab-button-color: #494949;
+    --tab-button-background-color: #eee;
+    --tab-button-font-size: 1.5rem;
+    --tab-button-active-background-color: var(--pragma-blue-light);
+    --tab-button-active-color: 0 0% 100%;
+
+    --tab-panel-padding: 0px;
+    --tab-panel-border-width: 0px;
+    --tab-panel-shadow: none;
+    button {
+      flex-direction: column;
+      gap: 1.25rem;
+      &[aria-selected="true"] {
+        position: relative;
+        &:after {
+          --_triangle-width: 25px;
+          --_triangle-height: calc(cos(60deg) * var(--_triangle-width));
+          content: "";
+          position: absolute;
+          bottom: calc(var(--_triangle-height) * -1);
+          left: 50%;
+          transform: translateX(-50%);
+          width: var(--_triangle-width);
+          height: var(--_triangle-height);
+          background-color: var(--tab-button-active-background-color);
+          clip-path: polygon(50% 100%, 100% 0%, 0 0%);
+        }
+      }
+    }
+  }
+}

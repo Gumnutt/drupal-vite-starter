@@ -1,0 +1,9 @@
+<div{{attributes.addClass('fadeout-horizontal')}} style="--num-items: {{images|length}};">
+	<div class="marquee-track">
+		{% for image in images %}
+			<div class="marquee-item" style="--item-position: {{loop.index}};">
+				{{image.image}}
+			</div>
+		{% endfor %}
+	</div>
+</div>

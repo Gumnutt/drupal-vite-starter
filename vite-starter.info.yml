@@ -1,0 +1,24 @@
+name: Pragma theme
+description: Pragma Official Website Theme
+core: 11.x
+core_version_requirement: ^11
+type: theme
+base theme: stable9
+libraries:
+  - vite-starter/global-fonts
+  - vite-starter/global-styling
+  - vite-starter/hot-module-replacement
+regions:
+  mobile: Mobile navigation
+  header: Header
+  navigation: Navigation
+  help: Help
+  above_content: Above Content
+  sidebar_first: Sidebar
+  content: Content
+  content_below: Content below
+  above_footer: Above footer
+  footer_logo: Footer logo
+  footer_links: Footer links
+  footer_menu: Footer menu
+  hidden: Hidden blocks

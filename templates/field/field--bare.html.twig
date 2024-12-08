@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * A bare template for most fields.
+ *
+ * @see core/modules/system/templates/field.html.twig
+ */
+#}
+{{ spaceless }}
+{% if not label_hidden %}
+  <h4>{{label}}</h4>
+{% endif %}
+{% for item in items %}
+  {{- item.content -}}
+{% endfor %}
+{{ endspaceless }}

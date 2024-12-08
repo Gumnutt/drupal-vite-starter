@@ -1,0 +1,111 @@
+h1 {
+  font-size: var(--heading-1-mobile-size);
+  line-height: var(--heading-1-mobile-leading);
+  @media (--sm) {
+    font-size: var(--heading-1-size);
+    line-height: var(--heading-1-leading);
+  }
+}
+
+h2 {
+  font-size: var(--heading-2-mobile-size);
+  line-height: var(--heading-2-mobile-leading);
+  margin-block: var(--size-4);
+  @media (--sm) {
+    font-size: var(--heading-2-size);
+    line-height: var(--heading-2-leading);
+  }
+}
+
+h3 {
+  font-size: var(--heading-3-mobile-size);
+  font-weight: 600;
+  line-height: var(--heading-3-mobile-leading);
+  margin-block-start: var(--size-8);
+  margin-block-end: var(--size-4);
+  @media (--sm) {
+    font-size: var(--heading-3-size);
+    line-height: var(--heading-3-leading);
+  }
+}
+
+h4 {
+  font-size: var(--heading-4-mobile-size);
+  line-height: var(--heading-4-mobile-leading);
+  font-weight: 500;
+  margin-block-start: var(--size-8);
+  @media (--sm) {
+    font-size: var(--heading-4-size);
+    line-height: var(--heading-4-leading);
+  }
+}
+
+h5 {
+  font-size: var(--heading-5-mobile-size);
+  line-height: var(--heading-5-mobile-leading);
+  @media (--sm) {
+    font-size: var(--heading-5-size);
+    line-height: var(--heading-5-leading);
+  }
+}
+
+h6 {
+  font-size: var(--heading-6-mobile-size);
+  line-height: var(--heading-6-mobile-leading);
+  @media (--sm) {
+    font-size: var(--heading-6-size);
+    line-height: var(--heading-6-leading);
+  }
+}
+
+.layout-content h2 {
+  position: relative;
+  margin-top: var(--size-0);
+  padding-block-end: var(--size-5);
+  font-weight: 600;
+  line-height: var(--size-8);
+  color: var(--grey-900);
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    border-bottom: 3px solid var(--blue-300);
+    width: min(125px, 100%);
+  }
+}
+.content-body {
+  h2 {
+    margin-top: var(--size-16);
+  }
+}
+h2.section-title {
+  --heading-color: var(--grey-900, #1a1a1a);
+  --border-color: currentColor;
+  position: relative;
+  display: inline-block;
+  margin-top: var(--size-0);
+  padding-block-end: var(--size-5);
+  font-weight: 500;
+  line-height: var(--size-9);
+  color: var(--heading-color);
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    border-bottom: 3px solid var(--border-color);
+    width: min(260px, 100%);
+  }
+  &.green {
+    --border-color: var(--green);
+  }
+  &.blue {
+    --border-color: var(--blue);
+  }
+  &.yellow {
+    --border-color: var(--yellow);
+  }
+}

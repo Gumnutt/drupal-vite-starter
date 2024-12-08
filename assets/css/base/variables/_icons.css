@@ -1,0 +1,16 @@
+:where(html) {
+  --icon-size-base: 1.125em;
+  --icon-size-medium: 1.625rem;
+}
+.icon {
+  --icon-color: var(--blue-700);
+  font-size: var(--icon-size-base);
+  color: var(--icon-color);
+  &--solid {
+    font-variation-settings: "FILL" 1;
+  }
+  &--custom {
+    color: var(--blue-700);
+    aspect-ratio: 1;
+  }
+}

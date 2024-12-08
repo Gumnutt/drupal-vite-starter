@@ -1,0 +1,78 @@
+@layer reset, base, theme;
+@layer base {
+  .tabs {
+    --tab-count: 2;
+    --tabs-gutter: 0.5rem;
+    --tab-track-radius: 0.5rem;
+    --tab-track-padding: 0.25rem;
+    --tab-track-background-color: hsl(240 4.8% 95.9%);
+    --tab-track-gutter: 0px;
+
+    --tab-button-padding-block: 0.25rem;
+    --tab-button-padding-inline: 0.75rem;
+    --tab-button-background-color: hsl(240 4.8% 95.9%);
+    --tab-button-color: transparent;
+    --tab-button-border-radius: calc(var(--tab-track-radius) - var(--tab-track-padding));
+    --tab-button-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    --tab-button-active-background-color: hsl(0 0% 100%);
+    --tab-button-active-color: 240 10% 3.9%;
+    --tab-button-focus-ring-color: 240 5% 64.9%;
+    --tab-button-icon-size: 1.8cap;
+    --tab-button-font-size: 1rem;
+
+    --tab-panel-background-color: 0 0% 100%;
+    --tab-panel-radius: 0.5rem;
+    --tab-panel-padding: 1rem;
+    --tab-panel-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    --tab-panel-border-width: 1px;
+    --tab-panel-border-color: 240 4.8% 95.9%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    [role="tablist"] {
+      display: grid;
+      margin: 0;
+      border-radius: var(--tab-track-radius);
+      width: 100%;
+      padding: var(--tab-track-padding);
+      background-color: var(--tab-track-background-color);
+      grid-template-columns: repeat(var(--tab-count), minmax(0, 1fr));
+      gap: var(--tab-track-gutter);
+      button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition-property: all;
+        transition-duration: 0.15s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: var(--tab-button-border-radius);
+        padding-block: var(--tab-button-padding-block);
+        padding-inline: var(--tab-button-padding-inline);
+        background-color: var(--tab-button-background-color);
+        font-size: var(--tab-button-font-size);
+        color: var(--tab-button-color);
+        &[aria-selected="true"] {
+          box-shadow: var(--tab-button-shadow);
+          background-color: var(--tab-button-active-background-color);
+          color: hsl(var(--tab-button-active-color));
+        }
+        svg {
+          height: var(--tab-button-icon-size, 1.2cap);
+          pointer-events: none;
+        }
+      }
+    }
+    .tab-panel {
+      margin-top: var(--tabs-gutter);
+      box-shadow: var(--tab-panel-shadow);
+      border: var(--tab-panel-border-width) solid hsl(var(--tab-panel-border-color));
+      border-radius: var(--tab-panel-radius);
+      padding: var(--tab-panel-padding);
+      background-color: hsl(var(--tab-panel-background-color));
+    }
+  }
+}

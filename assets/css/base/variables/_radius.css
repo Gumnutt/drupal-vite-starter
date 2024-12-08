@@ -1,0 +1,10 @@
+:root {
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-2-5: 0.5rem;
+  --radius-3: 1rem;
+  --radius-4: 2rem;
+  --radius-5: 4rem;
+  --radius-6: 8rem;
+  --radius-full: 9999px;
+}

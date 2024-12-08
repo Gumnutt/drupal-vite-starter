@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{% if content %}
+  <button class="menu-toggle mobilemenu-open">
+    <span class="icon icon--solid material-symbols-outlined">menu</span>
+  </button>
+  <aside class="offcanvas">
+    <div class="container">
+      <button class="menu-toggle mobilemenu-close">
+        <span class="icon icon--solid material-symbols-outlined">close</span>
+        <span>Close</span>
+      </button>
+      {{ content }}
+    </div>
+  </aside>
+{% endif %}

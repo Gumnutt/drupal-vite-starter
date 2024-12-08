@@ -1,0 +1,42 @@
+<div class="tabs" style="--tab-count: {{tab_count}}">
+	<div role="tablist" aria-orientation="horizontal">
+		{% for item in items %}
+			{% set tab_button_attributes = create_attribute() %}
+
+			{% set tab_button_attributes = tab_button_attributes.setAttribute('role', 'tab') %}
+			{% set tab_button_attributes = tab_button_attributes.setAttribute('aria-controls', 'panel-' ~ loop.index) %}
+			{% set tab_button_attributes = tab_button_attributes.setAttribute('id', 'tab-' ~ loop.index) %}
+
+			<button{{tab_button_attributes.addClass('tab-item')}}>
+
+				{{ icon(item.icon['#pack_id'], item.icon['#icon_id']) }}
+
+				{{item.title}}
+			</button>
+
+		{% endfor %}
+	</div>
+	<div class="tabs__panels">
+		{% for item in items %}
+			{% set tab_panel_attributes = create_attribute() %}
+
+			{% set tab_panel_attributes = tab_panel_attributes.setAttribute('role', 'tabpanel') %}
+			{% set tab_panel_attributes = tab_panel_attributes.setAttribute('aria-labelledby', 'tab-' ~ loop.index) %}
+			{% set tab_panel_attributes = tab_panel_attributes.setAttribute('id', 'panel-' ~ loop.index) %}
+
+			<div{{tab_panel_attributes.addClass('tab-panel')}}>{{item.content}}</div>
+		{% endfor %}
+	</div>
+</div>
+
+<script>
+	window.addEventListener ( 'DOMContentLoaded', () => {
+
+
+
+new Tabs ( '[role="tablist"]', '[role="tabpanel"]', 0 );
+
+
+
+} );
+</script>

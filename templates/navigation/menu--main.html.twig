@@ -1,0 +1,116 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% set submenu_attributes = create_attribute() %}
+{% set classes = [
+  menu_level == 0 ? 'menu' : 'submenu',
+  menu_level,
+  skelington ? 'skelington',
+  menu_level == 1 ? 'container',
+] %}
+
+{% import _self as menus %}
+
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see https://twig.symfony.com/doc/1.x/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0, classes) }}
+
+{% macro menu_links(items, attributes, menu_level, classes) %}
+	{% import _self as menus %}
+	{% if items %}
+		{# {% if menu_level == 0 %} <div class="base-grid"> {% endif %} #}
+		<ul{{attributes.addClass(classes)}} data-menu-level="{{menu_level}}">
+			{% for item in items %}
+				{%
+        set classes = [
+          'menu-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+        ]
+      %}
+
+				<li{{item.attributes.addClass(classes)}}>
+					{{ link(item.title, item.url) }}
+					{% if item.below %}
+						{{ _self.submenu (item.below, attributes, menu_level + 1) }}
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+		{# {% if menu_level == 0 %} </div> {% endif %} #}
+	{% endif %}
+{% endmacro %}
+
+{% macro submenu (items, submenu_attributes, menu_level) %}
+	{% set submenu_attributes = create_attribute() %}
+	{% set submenu_classes = [
+    'submenu',
+  ] %}
+
+	{% if items|length % 4 == 0 or items|length > 6 %}
+		{% set col_count = 4 %}
+	{% elseif items|length % 3 == 0 %}
+		{% set col_count = 3 %}
+	{% elseif items|length % 2 == 0 %}
+		{% set col_count = 2 %}
+	{% else %}
+		{% set col_count = 1 %}
+	{% endif %}
+
+	{% if menu_level is same as 1 %}
+		{% set submenu_attributes = submenu_attributes.setAttribute('data-col-count', col_count) %}
+	{% endif %}
+	{% if menu_level is same as 2 %}
+		{% set submenu_attributes = submenu_attributes.setAttribute('data-col-count', col_count) %}
+	{% endif %}
+
+	<div{{submenu_attributes.addClass(submenu_classes)}} data-menu-level="{{menu_level}}">
+		{% if menu_level is same as 1 %}
+			<div class="container">
+				<button class="menu-back">
+					<span class="icon icon--solid material-symbols-outlined">chevron_left</span>
+					<span>Back to menu</span>
+				</button>
+			{% endif %}
+			<ul class="menu menu-level-{{menu_level}}" role="menubar">
+				{% for item in items %}
+					<li class="column">
+						{% if item.icon %}
+							<div class="menu-item--inline">
+								{{ link(item.title, item.url) }}
+							</div>
+						{% else %}
+							{{ link(item.title, item.url) }}
+						{% endif %}
+						{% if item.below %}
+							{{ _self.submenu (item.below, submenu_attributes, menu_level + 1) }}
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+			{% if menu_level is same as 1 %}
+			</div>
+		{% endif %}
+	</div>
+{% endmacro %}

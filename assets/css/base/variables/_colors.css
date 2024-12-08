@@ -1,0 +1,11 @@
+:root {
+  --pragma-blue-dark: rgba(5, 43, 61, 1);
+  --pragma-blue: rgba(14, 84, 114, 1);
+  --pragma-blue-light: rgba(38, 125, 255, 1);
+
+  --pragma-grey: #EEE;
+
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(30, 30, 30, 1);
+}
+

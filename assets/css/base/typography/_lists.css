@@ -1,0 +1,12 @@
+li {
+  max-width: unset;
+  font-weight: 300;
+  color: var(--body-color);
+  &.toolbar-menu__item{
+    padding-inline-start: var(--size-0);
+  }
+  &::marker {
+    font-size: 1rem;
+    color: inherit;
+  }
+}

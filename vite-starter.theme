@@ -1,0 +1,4 @@
+<?php
+
+include_once __DIR__ . '/includes/vite.theme';
+include_once __DIR__ . '/includes/blocks.theme';

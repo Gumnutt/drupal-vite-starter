@@ -1,0 +1,240 @@
+.container,
+.fullwidth {
+  --container-margin: var(--size-10);
+  --container-gutter: var(--size-4);
+  --content-width: 100%;
+  --container-columns: 6;
+  display: grid;
+  grid-template-columns:
+    [full-bleed-start] minmax(var(--container-margin), 1fr)
+    [body-start] minmax(0, var(--content-width))
+    [body-end] minmax(var(--container-margin), 1fr) [full-bleed-end];
+  @media (--sm) {
+    --content-width: 640px;
+  }
+  @media (--md) {
+    --container-margin: var(--size-8);
+    --container-columns: 12;
+    --content-width: 768px;
+  }
+  @media (--lg) {
+    --container-gutter: var(--size-6);
+    --content-width: 1024px;
+  }
+  @media (--xl) {
+    --container-gutter: var(--size-8);
+    --container-margin: var(--size-24);
+    --content-width: 1280px;
+  }
+  @media (--xxl) {
+    --content-width: 1536px;
+  }
+  /*column-gap: var(--container-gutter);*/
+  &.has-sidebar {
+    --sidebar-width: 300px;
+    --spacer-width: 110px;
+    grid-template-columns:
+      [full-bleed-start] minmax(var(--container-margin), 1fr)
+      [body-start] minmax(0, var(--content-width))
+      [body-end] minmax(var(--container-margin), 1fr) [full-bleed-end];
+    @media (--md) {
+      grid-template-columns:
+        [full-bleed-start] minmax(var(--container-margin), 1fr)
+        [sidebar-start] var(--sidebar-width)
+        [sidebar-end spacer-start] minmax(1rem, var(--spacer-width))
+        [spacer-end body-start] minmax(0, calc(var(--content-width) - var(--sidebar-width) - var(--spacer-width)))
+        [body-end] minmax(var(--container-margin), 1fr) [full-bleed-end];
+    }
+    .sidebar {
+      display: grid;
+      background-color: var(--grey-100);
+      grid-column-start: full-bleed-start;
+      grid-column-end: full-bleed-end;
+      grid-template-columns: subgrid;
+      @media (--md) {
+        display: block;
+        margin-top: var(--size-25);
+        background-color: transparent;
+        grid-column-start: sidebar-start;
+        grid-column-end: sidebar-end;
+      }
+      &:has(.block-facets) {
+        display: grid;
+        flex-direction: column;
+        row-gap: var(--size-12);
+        @media (--md) {
+          display: flex;
+        }
+      }
+      & > * {
+        grid-column-start: body-start;
+        grid-column-end: body-end;
+      }
+    }
+    .content-body {
+      grid-column-start: body-start;
+      grid-column-end: body-end;
+      @media (--md-below) {
+        grid-column-start: full-bleed-start;
+        grid-column-end: full-bleed-end;
+      }
+    }
+  }
+  & > * {
+    grid-column-start: body-start;
+    grid-column-end: body-end;
+  }
+}
+
+.fullwidth,
+.fullbleed {
+  grid-column-start: full-bleed-start;
+  grid-column-end: full-bleed-end;
+}
+
+.base-grid {
+  --base-grid-gutter: var(--size-4);
+  --base-grid-columns: 6;
+  display: grid;
+  grid-template-columns: repeat(var(--base-grid-columns), 1fr);
+  column-gap: var(--base-grid-gutter);
+  @media (--md) {
+    --base-grid-columns: 12;
+  }
+  @media (--lg) {
+    --base-grid-gutter: var(--size-6);
+  }
+  @media (--xl) {
+    --base-grid-gutter: var(--size-8);
+  }
+  & > * {
+    grid-column: 1/-1;
+  }
+}
+
+.grid {
+  --columns: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 1rem;
+  @media (--md) {
+    --columns: 2;
+  }
+  @media (--lg) {
+    --columns: var(--col-count, 4);
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--size-6);
+}
+
+#block-boral-content {
+  > article {
+    &:is(.type-flexible-page) {
+      grid-column-start: full-bleed-start;
+      grid-column-end: full-bleed-end;
+    }
+  }
+}
+
+.layout-container > .paragraph--type--layout-section {
+  position: relative;
+  display: grid;
+  overflow-x: hidden;
+  background-color: var(--background-color, white);
+  grid-template-columns:
+    [full-bleed-start] minmax(var(--container-margin), 1fr) [body-start] minmax(0, var(--content-width)) [body-end] minmax(
+      var(--container-margin),
+      1fr
+    )
+    [full-bleed-end];
+  grid-column: full-bleed-start/full-bleed-end;
+  &:has(> [data-background-color="green"]) {
+    --background-color: var(--boral-green, #00a94f);
+    --heading-color: var(--white);
+    --body-color: var(--white);
+    :is(h1, h2, h3, h4, h5, h6) {
+      --heading-color: var(--white);
+      --border-color: var(--heading-color);
+    }
+    :is(p) {
+      --body-color: var(--white);
+    }
+    :is(span, a) {
+      --link-color: var(--white);
+    }
+  }
+  &:has(> [data-background-color="lime"]) {
+    --background-color: var(--boral-lime-60, #cae289);
+    --heading-color: var(--black);
+    :is(h1, h2, h3, h4, h5, h6) {
+      --heading-color: var(--black);
+    }
+    :is(p) {
+      --body-color: var(--grey-800);
+    }
+    :is(span, a):not(.icon) {
+      --link-color: var(--black);
+    }
+  }
+  &:has(> [data-background-color="gray"]) {
+    --background-color: var(--gray-100, #f0f0f0);
+    --heading-color: var(--black);
+    :is(h1, h2, h3, h4, h5, h6) {
+      --heading-color: var(--black);
+    }
+    :is(p, li) {
+      --body-color: var(--grey-800);
+    }
+    :is(span, a) {
+      --link-color: var(--boral-dark-green);
+    }
+  }
+  &:has(> [data-background-color="charcoal"]) {
+    --background-color: var(--boral-charcoal, #5a666f);
+    --body-color: var(--white);
+    --link-color: var(--body-color);
+    :is(h1, h2, h3, h4, h5, h6) {
+      --heading-color: var(--white);
+      --border-color: var(--heading-color);
+    }
+    :is(p) {
+      --body-color: var(--white);
+    }
+    :is(span, p > a) {
+      --link-color: var(--white);
+    }
+  }
+  &:has(.cer-separator) {
+    > * {
+      grid-column: full-bleed-start/full-bleed-end;
+    }
+  }
+  > * {
+    z-index: 2;
+    grid-column: body-start/body-end;
+  }
+  img {
+    margin-block-end: var(--size-10);
+  }
+  .layout--image-wrapper {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    display: none;
+    width: 30%;
+    height: 100%;
+    grid-column: body-start/full-bleed-end;
+    @media (--lg) {
+      display: block;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+global-fonts:
+  css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap: { type: external, minified: true }
+      https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200:
+        { type: external, minified: true }
+      https://fonts.googleapis.com/css2?family=Poller+One&display=swap: { type: external, minified: true }
+
+global-styling:
+  css:
+    theme:
+      assets/css/main.css: {}
+  js:
+    assets/js/main.js: { attributes: { type: "module" } }
+
+hot-module-replacement:
+  header: true
+  js:
+    http://localhost:12321/@vite/client: { type: external, attributes: { type: "module" } }
