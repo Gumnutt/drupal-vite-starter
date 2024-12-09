@@ -1,5 +1,5 @@
-name: Pragma theme
-description: Pragma Official Website Theme
+name: Vite starter theme
+description: Vite starter Theme
 core: 11.x
 core_version_requirement: ^11
 type: theme
